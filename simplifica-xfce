@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# Deixa o script extremamente silencioso
+# O script deve ser totalmente transparente ao usuário
+# uma vez que ele será chamado a cada execução do APT
+exec 1>/dev/null
+exec 2>/dev/null
+
+# Entra na pasta dos lançadores desktop
+cd "/usr/share/applications"
+sed -i 's|RELEASE|Tiger OS|g' ubiquity.desktop
+
+# Alguns apps possuem nomes que não passam diretamente sua função mas o nome 
+# genérico cumpre essa função, então fazemos a troca
+
+launchers_to_swap=("mousepad.desktop" "atril.desktop" "thunar.desktop" "")
+
+for launcher in "${launchers_to_swap[@]}"; do
+  grep -q ^"GenericName" "${launcher}" && sed '/^Name\[.*\]=/d;/^Name=/d;s/^Generic//g' "${launcher}"
+done
+
+# pavucontrol é tecnicamente uma ferramenta de configuração no contexto do TigerOS
+sed -i 's/AudioVideo;Audio;Mixer;/Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;/g' pavucontrol.desktop
+
+# O utilitário de renomeação em massa do XFCE por algum motivo estranho é listado
+# como sendo um app que alera o sistema, coloquemos de volta em Acessórios
+sed -i 's/^Categories=System;Utility;Core;GTK;Filesystem;/Categories=GTK;Utility;/g' thunar-bulk-rename.desktop
+
+# Alguns lançadores desktop não fazem sentido estarem presente no menu de apps
+# seja por serem utilitários do terminal ou por não fazerem sentido dentro do contexto
+# do TigerOS, então esse trecho adiciona um pequeno hack pra fazer eles serem ocultos
+# do menu de apps
+
+launchers_to_hide=("thunar.desktop" "xfce4-session-logout.desktop" "vim.desktop"
+                   "debian-uxterm.desktop" "debian-xterm.desktop" "yad-icon-browser.desktop"
+                   "xfce4-about.desktop" "display-im6.q16.desktop" )
+
+for launcher in "${launchers_to_hide[@]}"; do
+  [ ! "$(tail -n1 ${launcher})" = "Hidden=true" ] && echo Hidden=true | tee -a ${launcher}
+done
+
+# O hack anterior não funciona no xfce4-terminal
+sed -i 's|Actions=preferences;|Actions=preferences;\nHidden=true|' xfce4-terminal.desktop
+
+# O XFCE organiza os módulos de configuração dentro do menu de apps, embora isso tenha suas vantagens
+# devido a isso o menu de apps fica sobrecarregado de apps que não são apps esse hack faz com que
+# todas as ferramentas de configuração sejam acessíveis apenas através do app "Configurações"
+mkdir -p /usr/share/tiger/xfce-config/applications
+sed -i 's/Settings/System/g' xfce-settings-manager.desktop
+mv $(grep "Categories=.*Settings;" * | cut -d: -f1) /usr/share/tiger/xfce-config/applications
+
+# Faz um envolucro no xfce4-settings-manager para ele buscar apps de configuração em
+# /usr/share/tiger/xfce-config/applications também
+
+magic=$(head -n1 "/bin/xfce4-settings-manager" | cut -c 1-2)
+[ ! "${magic}" = "#!" ] && {
+  mv "/bin/xfce4-settings-manager" "/bin/xfce4-settings-manager.bin"
+  echo '#!/usr/bin/env bash'                                                 >  '/bin/xfce4-settings-manager'
+  echo 'export XDG_DATA_DIRS=${XDG_DATA_DIRS}:/usr/share/tiger/xfce-config'  >> '/bin/xfce4-settings-manager'
+  echo "/bin/xfce4-settings-manager.bin"                                     >> "/bin/xfce4-settings-manager"
+  chmod a+x "/bin/xfce4-settings-manager"
+}
+
+# Alguns aplicativos não fazem sentido fazer parte do painel de controle
+
+launchers_to_reset=("welcome-tigeros.desktop" "kernel-tigeros.desktop" "mintdrivers.desktop"
+                    "mintinstall.desktop" "ubiquity.desktop" )
+
+for launcher in "${launchers_to_reset[@]}"; do
+  [ -f "/usr/share/tiger/xfce-config/applications/${launcher}" ] && {
+    mv "/usr/share/tiger/xfce-config/applications/${launcher}" "/usr/share/applications/"
+  }
+done
+
+# Força uma saída com código 0
+exit 0
