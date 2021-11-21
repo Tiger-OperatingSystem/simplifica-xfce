@@ -72,5 +72,12 @@ for launcher in "${launchers_to_reset[@]}"; do
   }
 done
 
+distributor=$(cat /etc/default/grub | grep ^GRUB_DISTRIBUTOR= | cut -d\" -f2)
+
+[ ! "${distributor}" = "Iniciar o Tiger OS" ] && {
+  sed -i 's|^GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR="Iniciar o Tiger OS"|g' /etc/default/grub
+  update-grub
+}
+
 # Força uma saída com código 0
 exit 0
