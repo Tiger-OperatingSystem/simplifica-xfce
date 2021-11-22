@@ -19,8 +19,6 @@ mkdir -p "${working_dir}/DEBIAN/"
 cp -v "${HERE}/config" "${HERE}/simplifica-xfce"        "${working_dir}/usr/bin"
 cp -v "${HERE}/config" "${HERE}/20simplifica-xfce.conf" "${working_dir}/etc/apt/apt.conf.d"
 
-chmod a+x "${working_dir}/usr/bin/simplifica-xfce"
-
 (
  echo "Package: simplifica-xfce"
  echo "Priority: optional"
@@ -31,6 +29,17 @@ chmod a+x "${working_dir}/usr/bin/simplifica-xfce"
  echo "Description: $(cat ${HERE}/README.md  | sed -n '1p')"
  echo
 ) > "${working_dir}/DEBIAN/control"
+
+(
+ echo "#!/bin/sh"
+ echo "/bin/simplifica-xfce"
+ echo "exit 0"
+ echo
+) > "${working_dir}/DEBIAN/postinst"
+
+
+chmod a+x "${working_dir}/usr/bin/simplifica-xfce"
+chmod a+x "${working_dir}/DEBIAN/postinst"
 
 dpkg -b ${working_dir}
 rm -rfv ${working_dir}
