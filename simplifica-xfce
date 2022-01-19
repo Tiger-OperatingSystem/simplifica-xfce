@@ -80,10 +80,10 @@ distributor=$(cat /etc/default/grub | grep ^GRUB_DISTRIBUTOR= | cut -d\" -f2)
 }
 
 [ -f "/usr/bin/startxfce4" ] && {
-  magic=$(head -n1 "/usr/bin/startxfce4" | cut -c 1-2)
-  [ ! "${magic}" = "#!" ] && {
+  magic=$(head -n1 "/usr/bin/startxfce4")
+  [ ! "${magic}" = "#!/bin/sh" ] && {
     mv "/usr/bin/startxfce4" "/usr/bin/startxfce4.orig"
-    ln -fs /usr/bin/startxfce4.sh /usr/bin/startxfce4
+    ln -fs "/usr/bin/startxfce4.sh" "/usr/bin/startxfce4"
     chmod a+x /usr/bin/startxfce4
   }
 }
