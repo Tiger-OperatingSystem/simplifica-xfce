@@ -22,7 +22,7 @@ cp -v "${HERE}/config" "${HERE}/20simplifica-xfce.conf" "${working_dir}/etc/apt/
 (
  echo "Package: simplifica-xfce"
  echo "Priority: optional"
- echo "Version: 1.0"
+ echo "Version: 1.5"
  echo "Architecture: all"
  echo "Maintainer: Natanael Barbosa Santos"
  echo "Depends: "
