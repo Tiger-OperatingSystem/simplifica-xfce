@@ -72,6 +72,8 @@ for launcher in "${launchers_to_reset[@]}"; do
   }
 done
 
+# Modifica o GRUB
+
 distributor=$(cat /etc/default/grub | grep ^GRUB_DISTRIBUTOR= | cut -d\" -f2)
 
 [ ! "${distributor}" = "Iniciar o Tiger OS" ] && {
@@ -79,15 +81,21 @@ distributor=$(cat /etc/default/grub | grep ^GRUB_DISTRIBUTOR= | cut -d\" -f2)
   update-grub
 }
 
+# Transforma o startxfce em um script de gestão de sessão mais completo
+# com esse patch é possível por exemplo recarregar as configurações do
+# XFCE sem necessidade de refazer o login, veja Tiger-Shell para mais
+# informações
+
 [ -f "/usr/bin/startxfce4" ] && {
-  magic=$(head -n1 "/usr/bin/startxfce4")
-  [ ! "${magic}" = "#!/bin/sh" ] && {
-    mv "/usr/bin/startxfce4" "/usr/bin/startxfce4.orig"
-    ln -fs "/usr/bin/startxfce4.sh" "/usr/bin/startxfce4"
-    chmod a+x /usr/bin/startxfce4
+  shebang=$(head -n1 "/usr/bin/startxfce4")
+  [ "${shebang}" = '#!/bin/sh' ] && {
+    [ -f "/usr/bin/tiger-shell.sh" ] && {
+      mv "/usr/bin/startxfce4" "/usr/bin/startxfce4.orig"
+      ln -fs "/usr/bin/tiger-shell.sh" "/usr/bin/startxfce4"
+      chmod a+x /usr/bin/startxfce4
+    }
   }
 }
-
 
 # Força uma saída com código 0
 exit 0
