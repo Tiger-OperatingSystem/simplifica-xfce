@@ -1,0 +1,42 @@
+name: Sugerir uma modificação no menu de aplicativos
+description: Sugira um modificação no arquivo .desktop de algum aplicativo\n
+title: "Sugestão de modificação em um aplicativo"
+labels: ["Sugestão"]
+
+body:
+  - type: input
+    id: name_
+    attributes:
+      label: Qual o arquivo .desktop responsável pelo aplicativo?
+      description: Esse é o arquivo responsável por iniciar o aplicativo ele fica localizado um `/usr/share/applications/` ou em `/usr/share/tiger/xfce-config/applications/` (caso escolha `Exibir um aplicativo que foi oculto`)
+      placeholder: "org.kde.kwrite.desktop"
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Qual o tipo de patch você está sugerindo?
+      description: Diga o que você quer fazer com o aplicativo
+      options:
+        - Ocultar o aplicativo
+        - Retirar o aplicativo do painel de controle
+        - Usar o nome genérico (tipo de aplicação) como nome
+        - Definir um nome manualmente
+    validations:
+      required: true
+  - type: input
+    id: command_
+    attributes:
+      label: Qual o novo nome
+      description: "Caso tenha escolhido 'Definir um nome manualmente' digite o nome sugerido no campo abaixo"
+      placeholder: "Editor de textos"
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "Termo de bom senso"
+      description: Você confirma que não está enviando sugestão de conteúdo racista, sexista, sexual, gore, apologia a violência, preferência política ou conteúdo sensível e/ou proíbido para menores de 18 anos?
+      options:
+        - label: Sim, não estou
+          required: true
