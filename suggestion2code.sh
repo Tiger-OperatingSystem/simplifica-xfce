@@ -16,7 +16,7 @@ file_to_modify=""
 
 [ "${patch}" = "Usar o tipo de aplicação como nome" ] && {
   script="launchers_to_swap+=(\"${desktop}\")"
-  file_to_modify="lists/swap_GenericName_with_name.sh"
+  file_to_modify="lists/change_Name_to_GenericName.sh"
 }
 
 [ "${patch}" = "Ocultar o aplicativo" ] && {
