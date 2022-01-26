@@ -26,12 +26,12 @@ file_to_modify=""
 
 [ "${patch}" = "Exibir o aplicativo" ] && {
   script="launchers_to_show+=(\"${desktop}\")"
-  file_to_modify="lists/launchers_to_hshow.sh"
+  file_to_modify="lists/launchers_to_show.sh"
 }
 
 [ "${patch}" = "Definir um nome manualmente" ] && {
   script="sed \"/^Name\[/d;s|^Name=.*|Name=${name}|g\" ${desktop}"
-  file_to_modify="lists/launchers_to_manually_patch.sh"
+  file_to_modify="lists/launchers_to_manually_rename.sh"
 }
 
 [ "${patch}" = "Retirar o aplicativo do painel de controle" ] && {
