@@ -25,8 +25,8 @@ body:
         - Definir um nome manualmente
     validations:
       required: true
-  - type: new_name
-    id: command_
+  - type: input
+    id: new_name
     attributes:
       label: Qual o novo nome
       description: "Caso tenha escolhido `Definir um nome manualmente` digite o nome sugerido no campo abaixo"
