@@ -36,11 +36,9 @@ launchers_to_hide=("thunar.desktop" "xfce4-session-logout.desktop" "vim.desktop"
                    "xfce4-about.desktop" "display-im6.q16.desktop" )
 
 for launcher in "${launchers_to_hide[@]}"; do
-  [ ! "$(tail -n1 ${launcher})" = "Hidden=true" ] && echo Hidden=true | tee -a ${launcher}
+  grep -q ^"Hidden=true" "${launcher}" || sed -i 's|^\[Desktop Entry\]$|[Desktop Entry]\nHidden=true|g' "${launcher}"
 done
 
-# O hack anterior não funciona no xfce4-terminal
-sed -i 's|Actions=preferences;|Actions=preferences;\nHidden=true|' xfce4-terminal.desktop
 
 # O XFCE organiza os módulos de configuração dentro do menu de apps, embora isso tenha suas vantagens
 # devido a isso o menu de apps fica sobrecarregado de apps que não são apps esse hack faz com que
