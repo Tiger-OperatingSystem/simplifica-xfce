@@ -5,7 +5,7 @@ labels: ["Sugestão"]
 
 body:
   - type: input
-    id: name_
+    id: desktop
     attributes:
       label: Qual o arquivo .desktop responsável pelo aplicativo?
       description: Esse é o arquivo responsável por iniciar o aplicativo ele fica localizado um `/usr/share/applications/` ou em `/usr/share/tiger/xfce-config/applications/` (caso escolha `Exibir um aplicativo que foi oculto`)
@@ -13,7 +13,7 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: version
+    id: type
     attributes:
       label: Qual o tipo de modificação você está sugerindo?
       description: Diga o que você quer fazer com o aplicativo
@@ -25,7 +25,7 @@ body:
         - Definir um nome manualmente
     validations:
       required: true
-  - type: input
+  - type: new_name
     id: command_
     attributes:
       label: Qual o novo nome
