@@ -19,6 +19,7 @@ body:
       description: Diga o que você quer fazer com o aplicativo
       options:
         - Ocultar o aplicativo
+        - Exibir o aplicativo
         - Retirar o aplicativo do painel de controle
         - Usar o nome genérico (tipo de aplicação) como nome
         - Definir um nome manualmente
@@ -28,7 +29,7 @@ body:
     id: command_
     attributes:
       label: Qual o novo nome
-      description: "Caso tenha escolhido 'Definir um nome manualmente' digite o nome sugerido no campo abaixo"
+      description: "Caso tenha escolhido `Definir um nome manualmente` digite o nome sugerido no campo abaixo"
       placeholder: "Editor de textos"
     validations:
       required: false
