@@ -13,7 +13,9 @@ sed -i 's|RELEASE|Tiger OS|g' ubiquity.desktop
 # Alguns apps possuem nomes que não passam diretamente sua função mas o nome 
 # genérico cumpre essa função, então fazemos a troca
 
-launchers_to_swap=("mousepad.desktop" "atril.desktop" "thunar.desktop" "")
+launchers_to_swap=()
+
+#-- change_Name_to_GenericName.sh
 
 for launcher in "${launchers_to_swap[@]}"; do
   grep -q ^"GenericName" "${launcher}" && sed '/^Name\[.*\]=/d;/^Name=/d;s/^Generic//g' "${launcher}"
@@ -31,14 +33,23 @@ sed -i 's/^Categories=System;Utility;Core;GTK;Filesystem;/Categories=GTK;Utility
 # do TigerOS, então esse trecho adiciona um pequeno hack pra fazer eles serem ocultos
 # do menu de apps
 
-launchers_to_hide=("thunar.desktop" "xfce4-session-logout.desktop" "vim.desktop"
-                   "debian-uxterm.desktop" "debian-xterm.desktop" "yad-icon-browser.desktop"
-                   "xfce4-about.desktop" "display-im6.q16.desktop" )
+launchers_to_hide=()
+
+#-- launchers_to_hide.sh
 
 for launcher in "${launchers_to_hide[@]}"; do
   grep -q ^"Hidden=true" "${launcher}" || sed -i 's|^\[Desktop Entry\]$|[Desktop Entry]\nHidden=true|g' "${launcher}"
 done
 
+launchers_to_show+=()
+
+#-- launchers_to_show.sh
+
+for launcher in "${launchers_to_show[@]}"; do
+  sed -i '/^Hidden=true/g' "${launcher}"
+done
+
+#-- launchers_to_manually_rename.sh 
 
 # O XFCE organiza os módulos de configuração dentro do menu de apps, embora isso tenha suas vantagens
 # devido a isso o menu de apps fica sobrecarregado de apps que não são apps esse hack faz com que
@@ -61,8 +72,9 @@ magic=$(head -n1 "/bin/xfce4-settings-manager" | cut -c 1-2)
 
 # Alguns aplicativos não fazem sentido fazer parte do painel de controle
 
-launchers_to_reset=("welcome-tigeros.desktop" "kernel-tigeros.desktop" "mintdrivers.desktop"
-                    "mintinstall.desktop" "ubiquity.desktop" )
+launchers_to_reset=()
+
+#-- launchers_to_move_back_to_usr_share.sh 
 
 for launcher in "${launchers_to_reset[@]}"; do
   [ -f "/usr/share/tiger/xfce-config/applications/${launcher}" ] && {
