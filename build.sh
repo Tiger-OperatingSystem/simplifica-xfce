@@ -16,6 +16,12 @@ mkdir -p "${working_dir}/usr/bin"
 mkdir -p "${working_dir}/etc/apt/apt.conf.d/"
 mkdir -p "${working_dir}/DEBIAN/"
 
+for file in lists/*; do
+  mark="#-- $(basename ${file})"
+  sed -i "/${mark}/ r ${file}" simplifica-xfce
+  sed -i "/^${mark}/d" simplifica-xfce
+done
+
 cp -v "${HERE}/config" "${HERE}/simplifica-xfce"        "${working_dir}/usr/bin"
 cp -v "${HERE}/config" "${HERE}/20simplifica-xfce.conf" "${working_dir}/etc/apt/apt.conf.d"
 
