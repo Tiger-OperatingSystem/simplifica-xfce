@@ -39,5 +39,5 @@ file_to_modify=""
   file_to_modify="lists/launchers_to_move_back_to_usr_share.sh"
 }
 
-echo -e "@daigoasuka, o usuário @${author} está sugerindo para **$(echo ${patch} | tr  '[:upper:]' '[:lower:]')** para o arquivo \`${desktop}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'${file_to_modify}'`'
+echo -e "@daigoasuka, o usuário @${author} está sugerindo para **$(echo ${patch} | tr  '[:upper:]' '[:lower:]')** para o arquivo \`${desktop}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'${file_to_modify}'`' > commit.md
 gh issue comment "${ISSUE_URL}" --body-file commit.md
