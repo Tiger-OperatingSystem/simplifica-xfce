@@ -44,9 +44,61 @@ function type:1(){
     script="launchers_to_reset+=(\"${desktop}\")"
     file_to_modify="lists/launchers_to_move_back_to_usr_share.sh"
   }
+  
+  echo -e "@daigoasuka, o usuário @${author} está sugerindo para **$(echo ${patch} | tr  '[:upper:]' '[:lower:]')** para o arquivo \`${desktop}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'${file_to_modify}'`' > commit.md
+}
+
+function type:2(){
+  desktop=$(field 1)
+  _local=$(field   2)
+  argumentos=$(field    3)
+
+
+
+  script="
+
+#----- Esse trecho adiciona '${argumentos}' $(echo ${_local} | tr  '[:upper:]' '[:lower:]') no arquivo ${desktop} ----#
+
+line=\$(cat ${desktop} | grep -n -A 10000 -E '^\[Desktop Entry]|^Exec=' | grep -m1 Exec= | cut -d\: -f1)
+
+command_line=\$(sed -n \${line}p ${desktop}  | cut -c 6- | sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
+
+parameters=\$(echo \${command_line} | sed 's/[^ ]* //')
+command=\$(echo \${command_line} | sed 's|[[:space:]].*||g')
+
+"
+
+  [ "${_local}" = "Como primeiro parametro" ] && {
+  script="${script}parameters=\"${argumentos} \${parameters}\"
+  
+"
+  } 
+
+  [ "${_local}" = "Como último parametro" ] && {
+  script="${script}parameters=\"\${parameters} ${argumentos}\"
+  
+"
+  }
+
+  [ "${_local}" = "Antes do comando" ] && {
+  script="${script}command=\"${argumentos} \${command}\"
+  
+"
+  }
+
+
+  script="${script}sed -i \"\${line}s|^Exec=|Exec=\${command} \${parameters}|g\" ${desktop}
+
+#----- Fim do trecho relacionado ao arquivo ${desktop} ----#
+
+"
+
+
+
+  echo -e "@daigoasuka sugestão para adicionar \`${argumentos}\` $(echo ${_local} | tr  '[:upper:]' '[:lower:]') no lançador \`${desktop}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'  > commit.md
 }
 
 [ "${color}" = "7057ff" ] && type:1
+[ "${color}" = "d876e3" ] && type:2
 
-echo -e "@daigoasuka, o usuário @${author} está sugerindo para **$(echo ${patch} | tr  '[:upper:]' '[:lower:]')** para o arquivo \`${desktop}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'${file_to_modify}'`' > commit.md
 gh issue comment "${ISSUE_URL}" --body-file commit.md
