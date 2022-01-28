@@ -21,6 +21,8 @@ for launcher in "${launchers_to_swap[@]}"; do
   grep -q ^"GenericName" "${launcher}" && sed '/^Name\[.*\]=/d;/^Name=/d;s/^Generic//g' "${launcher}"
 done
 
+#-- modify_execution_environment.sh
+
 # pavucontrol é tecnicamente uma ferramenta de configuração no contexto do TigerOS
 sed -i 's/AudioVideo;Audio;Mixer;/Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;/g' pavucontrol.desktop
 
