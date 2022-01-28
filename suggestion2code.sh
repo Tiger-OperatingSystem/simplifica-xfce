@@ -90,13 +90,79 @@ command=\$(echo \${command_line} | sed 's|[[:space:]].*||g')
 #----- Fim do trecho relacionado ao arquivo ${desktop} ----#
 
 "
-
-
-
   echo -e "@daigoasuka sugestão para adicionar \`${argumentos}\` $(echo ${_local} | tr  '[:upper:]' '[:lower:]') no lançador \`${desktop}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'lists/modify_execution_environment.sh'`'  > commit.md
+}
+
+function type:3(){
+  desktop=$(field 1)
+  category=$(field   2)
+  control_panel_category=$(field    3)
+  
+  human_category="${category}"
+
+  [ "${category}" = "Acessórios" ] && {
+    category="Utility;"
+  }
+        
+  [ "${category}" = "Configurações" ] && {
+    category="Settings;"
+  }
+  
+  [ "${category}" = "Desenvolvimento" ] && {
+    category="Development;"
+  }
+       
+  [ "${category}" = "Escritório" ] && {
+    category="Office;"
+  }
+
+  [ "${category}" = "Gráficos" ] && {
+    category="Graphics;"
+  }
+    
+  [ "${category}" = "Internet" ] && {
+    category="Network;"
+  }
+  
+  [ "${category}" = "Aúdio" ] && {
+    category="Audio;"
+  }
+       
+  [ "${category}" = "Sistema" ] && {
+    category="System;"
+  }
+        
+  [ "${control_panel_category}" = "Pessoal" ] && {
+    category="${category}X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;"
+  }
+  
+  [ "${control_panel_category}" = "Hardware" ] && {
+    category="${category}X-XFCE-SettingsDialog;X-XFCE-HardwareSettings;"
+  }
+  
+  [ "${control_panel_category}" = "Sistema" ] && {
+    category="${category}X-XFCE-SettingsDialog;X-XFCE-SystemSettings;"
+  }
+
+  [ "${control_panel_category}" = "Outros" ] && {
+    category="${category}X-XFCE-SettingsDialog;"
+  }
+  
+  script="
+ #----- Esse trecho troca a categoria do arquivo ${desktop} para ${human_category} ----#
+
+ sed -i 's|^Categories=.*|Categories=${category}|g' ${desktop}
+ 
+ #----- Fim do trecho relacionado ao arquivo ${desktop} ----#
+ 
+ "
+ 
+  echo -e "@daigoasuka sugestão para mudar a categoria do lançador \`${human_category}\` para \`\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'lists/change_category.sh'`'  > commit.md
+
 }
 
 [ "${color}" = "7057ff" ] && type:1
 [ "${color}" = "d876e3" ] && type:2
+[ "${color}" = "a2eeef" ] && type:3
 
 gh issue comment "${ISSUE_URL}" --body-file commit.md
