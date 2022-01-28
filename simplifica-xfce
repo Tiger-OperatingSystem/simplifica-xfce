@@ -23,6 +23,8 @@ done
 
 #-- modify_execution_environment.sh
 
+#-- change_category.sh
+
 # pavucontrol é tecnicamente uma ferramenta de configuração no contexto do TigerOS
 sed -i 's/AudioVideo;Audio;Mixer;/Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;/g' pavucontrol.desktop
 
