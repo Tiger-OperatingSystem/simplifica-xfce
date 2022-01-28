@@ -53,9 +53,7 @@ function type:2(){
   _local=$(field   2)
   argumentos=$(field    3)
 
-  script="
-
-#----- Esse trecho adiciona '${argumentos}' $(echo ${_local} | tr  '[:upper:]' '[:lower:]') no arquivo ${desktop} ----#
+  script="#----- Esse trecho adiciona '${argumentos}' $(echo ${_local} | tr  '[:upper:]' '[:lower:]') no arquivo ${desktop} ----#
 
 line=\$(cat ${desktop} | grep -n -A 10000 -E '^\[Desktop Entry]|^Exec=' | grep -m1 Exec= | cut -d\: -f1)
 
@@ -84,11 +82,9 @@ command=\$(echo \${command_line} | sed 's|[[:space:]].*||g')
 "
   }
 
-
   script="${script}sed -i \"\${line}s|^Exec=.*|Exec=\${command} \${parameters}|g\" ${desktop}
 
 #----- Fim do trecho relacionado ao arquivo ${desktop} ----#
-
 "
   echo -e "@daigoasuka sugestão para adicionar \`${argumentos}\` $(echo ${_local} | tr  '[:upper:]' '[:lower:]') no lançador \`${desktop}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'lists/modify_execution_environment.sh'`'  > commit.md
 }
@@ -148,13 +144,11 @@ function type:3(){
     category="${category}X-XFCE-SettingsDialog;"
   }
   
-  script="
- #----- Esse trecho troca a categoria do arquivo ${desktop} para ${human_category} ----#
+  script="#----- Esse trecho troca a categoria do arquivo ${desktop} para ${human_category} ----#
 
  sed -i 's|^Categories=.*|Categories=${category}|g' ${desktop}
  
  #----- Fim do trecho relacionado ao arquivo ${desktop} ----#
- 
  "
  
   echo -e "@daigoasuka sugestão para mudar a categoria do lançador \`${human_category}\` para \`\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'lists/change_category.sh'`'  > commit.md
