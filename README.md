@@ -10,8 +10,6 @@ Ele usa diversas ferramentas do GNU Text Utils para aplicar os "remendos", e gra
 
 Para contribuir é muito simples, você vai precisar de uma conta no GitHUb mas relaxa, é facil e intuitivo criar uma conta
 
- *   Clique aqui para abrir o formulário de sugestão
-
-*    Preencha um dos formulários [encontrados aqui](https://github.com/Tiger-OperatingSystem/simplifica-xfce/issues/new/choose)
+ *    Preencha um dos formulários [encontrados aqui](https://github.com/Tiger-OperatingSystem/simplifica-xfce/issues/new/choose)
 
  *   Agora é só aguardar uma revisão do mantenedor
