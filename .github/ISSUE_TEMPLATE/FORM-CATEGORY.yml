@@ -1,0 +1,52 @@
+name: Sugerir uma nova categoria para o aplicativo
+description: Sugira uma modificação que altera onde o aplicativo será exibido no menu de aplicativos
+title: "Modificação onde o aplicativo será exibido"
+labels: ["Sugestão tipo 3"]
+
+body:
+
+  - type: input
+    id: _
+    attributes:
+      label: Qual o arquivo .desktop responsável pelo aplicativo?
+      description: Esse é o arquivo responsável por iniciar o aplicativo, ele fica localizado em `/usr/share/applications/`
+      placeholder: "org.kde.kwrite.desktop"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Onde o aplicativo deve ser exibido?
+      description: O local representa as categorias no `Menu de aplicativos` caso escolha `Configurações` o aplicativo será enviado para o `Painel de controle`
+      options:
+        - Acessórios
+        - Configurações
+        - Desenvolvimento
+        - Escritório
+        - Gráficos
+        - Internet
+        - Multimídia
+        - Áudio
+        - Sistema
+    validations:
+      required: true
+  - type: dropdown
+    id: control
+    attributes:
+      label:  Qual categoria do painel de controle?
+      description: Caso tenha escolhido `Configurações` é necessário escolher uma categoria do `Painel de Controle` caso contrário o aplicativo ficará oculto, caso queira manter na categoria `Configurações` [envie outra issue soicitando a reexibição](https://github.com/Tiger-OperatingSystem/simplifica-xfce/issues/new?assignees=&labels=Sugest%C3%A3o&template=FORM-NAME.yml&title=Reexibir+o+aplicativo&type=1)
+      options:
+        - Pessoal
+        - Hardware
+        - Sistema
+        - Outros
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "Termo de bom senso"
+      description: Você confirma que não está enviando sugestão de conteúdo racista, sexista, sexual, gore, apologia a violência, preferência política ou conteúdo sensível e/ou proíbido para menores de 18 anos?
+      options:
+        - label: Sim, não estou
+          required: true
