@@ -53,8 +53,6 @@ function type:2(){
   _local=$(field   2)
   argumentos=$(field    3)
 
-
-
   script="
 
 #----- Esse trecho adiciona '${argumentos}' $(echo ${_local} | tr  '[:upper:]' '[:lower:]') no arquivo ${desktop} ----#
@@ -95,7 +93,7 @@ command=\$(echo \${command_line} | sed 's|[[:space:]].*||g')
 
 
 
-  echo -e "@daigoasuka sugestão para adicionar \`${argumentos}\` $(echo ${_local} | tr  '[:upper:]' '[:lower:]') no lançador \`${desktop}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'  > commit.md
+  echo -e "@daigoasuka sugestão para adicionar \`${argumentos}\` $(echo ${_local} | tr  '[:upper:]' '[:lower:]') no lançador \`${desktop}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'lists/modify_execution_environment.sh'`'  > commit.md
 }
 
 [ "${color}" = "7057ff" ] && type:1
