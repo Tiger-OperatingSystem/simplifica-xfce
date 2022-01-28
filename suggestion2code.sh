@@ -87,7 +87,7 @@ command=\$(echo \${command_line} | sed 's|[[:space:]].*||g')
   }
 
 
-  script="${script}sed -i \"\${line}s|^Exec=|Exec=\${command} \${parameters}|g\" ${desktop}
+  script="${script}sed -i \"\${line}s|^Exec=.*|Exec=\${command} \${parameters}|g\" ${desktop}
 
 #----- Fim do trecho relacionado ao arquivo ${desktop} ----#
 
