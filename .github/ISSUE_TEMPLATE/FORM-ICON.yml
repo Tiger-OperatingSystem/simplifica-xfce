@@ -1,0 +1,31 @@
+name: Sugerir um novo ícone para o aplicativo
+description: Sugira uma modificação que altera o ícone do aplicativo
+title: "Modificar o ícone do aplicativo"
+labels: ["Sugestão tipo 4"]
+
+body:
+
+  - type: input
+    id: _
+    attributes:
+      label: Qual o arquivo .desktop responsável pelo aplicativo?
+      description: Esse é o arquivo responsável por iniciar o aplicativo, ele fica localizado em `/usr/share/applications/`
+      placeholder: "kwrite"
+    validations:
+      required: true
+  - type: input
+    id: _
+    attributes:
+      label: Qual ícone você acha que se encaixa melhor no aplicativo?
+      description: O ícone deve estar no tema de ícones padrão do sistema
+      placeholder: "org.kde.kwrite.desktop"
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "Termo de bom senso"
+      description: Você confirma que não está enviando sugestão de conteúdo racista, sexista, sexual, gore, apologia a violência, preferência política ou conteúdo sensível e/ou proíbido para menores de 18 anos?
+      options:
+        - label: Sim, não estou
+          required: true
