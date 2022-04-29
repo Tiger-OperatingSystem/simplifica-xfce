@@ -151,12 +151,28 @@ function type:3(){
  #----- Fim do trecho relacionado ao arquivo ${desktop} ----#
  "
  
-  echo -e "@daigoasuka sugestão para mudar a categoria do lançador \`${human_category}\` para \`\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'lists/change_category.sh'`'  > commit.md
+  echo -e "@daigoasuka sugestão para mudar a categoria do lançador \`${desktop}\` para \`${human_category}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'lists/change_category.sh'`'  > commit.md
+
+}
+
+function type:4(){
+  desktop=$(field 1)
+  icon=$(field    2)
+  
+    script="#----- Esse trecho troca ao ícone do arquivo ${desktop} para ${icon} ----#
+
+ sed -i 's|^Icon=.*|Icon=${icon}|g' ${desktop}
+ 
+ #----- Fim do trecho relacionado ao arquivo ${desktop} ----#
+ "
+ 
+  echo -e "@daigoasuka sugestão para mudar o ícone do lançador \`${desktop}\` para \`${icon}\`, esse é o código:\n\n"'```'"bash\n${script}\n"'```'"\n\nEle deve ser colocado ao final do arquivo "'`'lists/change_icon.sh'`'  > commit.md
 
 }
 
 [ "${color}" = "7057ff" ] && type:1
 [ "${color}" = "d876e3" ] && type:2
 [ "${color}" = "a2eeef" ] && type:3
+[ "${color}" = "fbca04" ] && type:4
 
 gh issue comment "${ISSUE_URL}" --body-file commit.md
