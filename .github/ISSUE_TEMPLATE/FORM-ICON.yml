@@ -10,7 +10,7 @@ body:
     attributes:
       label: Qual o arquivo .desktop responsável pelo aplicativo?
       description: Esse é o arquivo responsável por iniciar o aplicativo, ele fica localizado em `/usr/share/applications/`
-      placeholder: "kwrite"
+      placeholder: "org.kde.kwrite.desktop"
     validations:
       required: true
   - type: input
@@ -18,7 +18,7 @@ body:
     attributes:
       label: Qual ícone você acha que se encaixa melhor no aplicativo?
       description: O ícone deve estar no tema de ícones padrão do sistema
-      placeholder: "org.kde.kwrite.desktop"
+      placeholder: "kwrite"
     validations:
       required: true
   - type: checkboxes
