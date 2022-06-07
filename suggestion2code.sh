@@ -36,7 +36,7 @@ function type:1(){
   }
 
   [ "${patch}" = "Definir um nome manualmente" ] && {
-    script="sed \"/^Name\[/d;s|^Name=.*|Name=${name}|g\" ${desktop}"
+    script="sed -i \"/^Name\[/d;s|^Name=.*|Name=${name}|g\" ${desktop}"
     file_to_modify="lists/launchers_to_manually_rename.sh"
   }
 
