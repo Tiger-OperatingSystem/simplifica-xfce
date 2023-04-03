@@ -7,3 +7,4 @@ sed -i "/^Name\[/d;s|^Name=.*|Name=Gerenciador de servidores|g" gigolo.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Planilha (Excel)|g" wps-office-et.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Apresentação de Slides (Power Point)|g" wps-office-wpp.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Editor de Texto (Word)|g" wps-office-prometheus.desktop
+sed -i "/^Name\[/d;s|^Name=.*|Name=Instalar Programas|g" io.elementary.appcenter.desktop
