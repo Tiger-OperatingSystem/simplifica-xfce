@@ -14,10 +14,3 @@ parameters="--password-store=basic ${parameters}"
 sed -i "${line}s|^Exec=.*|Exec=${command} ${parameters}|g" google-chrome.desktop
 
 #----- Fim do trecho relacionado ao arquivo google-chrome.desktop ----#
-
-#----- Esse trecho adiciona '.sh' ao executável de io.elementary.appcenter.desktop ----#
-  
-sed -i "s|io\.elementary\.appcente.* |io.elementary.appcenter.sh |g" io.elementary.appcenter.desktop
-
-#----- Fim do trecho relacionado ao arquivo io.elementary.appcenter.desktop ----#
-
