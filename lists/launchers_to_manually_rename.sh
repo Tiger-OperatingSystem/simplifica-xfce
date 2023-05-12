@@ -12,6 +12,6 @@ sed -i "/^Name\[/d;s|^Name=.*|Name=Comparador de Arquivos|g" org.gnome.meld.desk
 sed -i "/^Name\[/d;s|^Name=.*|Name=Player multimídia|g" org.xfce.Parole.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Visualizador de documentos|g" atril.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Som|g" pavucontrol.desktop
-sed -i "/^Name\[/d;s|^Name=.*|Name=Bloco de notas|g" mousepad.desktop
+sed -i "/^Name\[/d;s|^Name=.*|Name=Bloco de notas|g" org.xfce.mousepad.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Gerenciador de partições|g" gparted.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Backup|g" timeshift-gtk.desktop
