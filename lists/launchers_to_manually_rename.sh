@@ -8,3 +8,6 @@ sed -i "/^Name\[/d;s|^Name=.*|Name=Planilha (Excel)|g" wps-office-et.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Apresentação de Slides (Power Point)|g" wps-office-wpp.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Editor de Texto (Word)|g" wps-office-prometheus.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Instalar Programas|g" io.elementary.appcenter.desktop
+sed -i "/^Name\[/d;s|^Name=.*|Name=Comparador de Arquivos|g" org.gnome.meld.desktop
+sed -i "/^Name\[/d;s|^Name=.*|Name=Player multimídia|g" org.xfce.Parole.desktop
+sed -i "/^Name\[/d;s|^Name=.*|Name=Visualizador de documentos|g" atril.desktop
