@@ -14,3 +14,9 @@ parameters="--password-store=basic ${parameters}"
 sed -i "${line}s|^Exec=.*|Exec=${command} ${parameters}|g" google-chrome.desktop
 
 #----- Fim do trecho relacionado ao arquivo google-chrome.desktop ----#
+
+#----- Esse trecho define 'tilix'  como emulador de terminal padrão ----#
+
+sed -i "${line}s|^Exec=.*|Exec=tilix|g" xfce4-terminal-emulator.desktop
+
+#----- Fim do trecho relacionado ao arquivo xfce4-terminal-emulator.desktop ----#
