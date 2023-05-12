@@ -16,3 +16,4 @@ sed -i "/^Name\[/d;s|^Name=.*|Name=Bloco de notas|g" org.xfce.mousepad.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Gerenciador de partições|g" gparted.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Backup|g" timeshift-gtk.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Terminal Tilix|g" xfce4-terminal-emulator.desktop
+sed -i "/^Name\[/d;s|^Name=.*|Name=Visualizador de Imagens|g" org.xfce.ristretto.desktop
