@@ -24,3 +24,8 @@
  
  #----- Fim do trecho relacionado ao arquivo org.gnome.baobab.desktop ----#
  
+#----- Esse trecho troca a categoria do arquivo org.xfce.ristretto.desktop para Acessórios ----#
+
+ sed -i 's|^Categories=.*|Categories=Utility;|g' org.xfce.ristretto.desktop
+ 
+ #----- Fim do trecho relacionado ao arquivo org.xfce.ristretto.desktop ----#
