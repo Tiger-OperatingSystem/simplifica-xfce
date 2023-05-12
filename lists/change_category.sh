@@ -18,3 +18,9 @@
  
  #----- Fim do trecho relacionado ao arquivo org.gnome.meld.desktop ----#
  
+#----- Esse trecho troca a categoria do arquivo org.gnome.baobab.desktop para Acessórios ----#
+
+ sed -i 's|^Categories=.*|Categories=Utility;|g' org.gnome.baobab.desktop
+ 
+ #----- Fim do trecho relacionado ao arquivo org.gnome.baobab.desktop ----#
+ 
