@@ -11,3 +11,4 @@ sed -i "/^Name\[/d;s|^Name=.*|Name=Instalar Programas|g" io.elementary.appcenter
 sed -i "/^Name\[/d;s|^Name=.*|Name=Comparador de Arquivos|g" org.gnome.meld.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Player multimídia|g" org.xfce.Parole.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Visualizador de documentos|g" atril.desktop
+sed -i "/^Name\[/d;s|^Name=.*|Name=Som|g" pavucontrol.desktop
