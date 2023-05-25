@@ -29,7 +29,7 @@ done
 sed -i 's/AudioVideo;Audio;Mixer;/Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;/g' pavucontrol.desktop
 
 # O utilitário de renomeação em massa do XFCE por algum motivo estranho é listado
-# como sendo um app que alera o sistema, coloquemos de volta em Acessórios
+# como sendo um app que altera o sistema, coloquemos de volta em Acessórios
 sed -i 's/^Categories=System;Utility;Core;GTK;Filesystem;/Categories=GTK;Utility;/g' thunar-bulk-rename.desktop
 
 # Alguns lançadores desktop não fazem sentido estarem presente no menu de apps
@@ -61,6 +61,7 @@ done
 mkdir -p /usr/share/tiger/xfce-config/applications
 sed -i 's/Settings/System/g' xfce-settings-manager.desktop
 mv $(grep "Categories=.*Settings;" * | cut -d: -f1) /usr/share/tiger/xfce-config/applications
+mv mintdrivers.desktop /usr/share/tiger/xfce-config/applications
 
 # Faz um envolucro no xfce4-settings-manager para ele buscar apps de configuração em
 # /usr/share/tiger/xfce-config/applications também
