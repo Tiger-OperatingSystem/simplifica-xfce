@@ -36,3 +36,9 @@
  
  #----- Fim do trecho relacionado ao arquivo ubiquity.desktop ----#
  
+#----- Esse trecho troca a categoria do arquivo welcome-tigeros para Acessórios ----#
+
+ sed -i 's|^Categories=.*|Categories=Utility;|g' welcome-tigeros.desktop
+ 
+ #----- Fim do trecho relacionado ao arquivo welcome-tigeros ----#
+ 
