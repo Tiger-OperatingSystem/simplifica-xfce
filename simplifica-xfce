@@ -8,7 +8,7 @@ exec 2>/dev/null
 
 # Entra na pasta dos lançadores desktop
 cd "/usr/share/applications"
-sed -i 's|RELEASE|Tiger OS|g' ubiquity.desktop
+sed -i 's|RELEASE|TigerOS|g' ubiquity.desktop
 
 # Alguns apps possuem nomes que não passam diretamente sua função mas o nome 
 # genérico cumpre essa função, então fazemos a troca
