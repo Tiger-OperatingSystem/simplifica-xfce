@@ -41,4 +41,5 @@
  sed -i 's|^Categories=.*|Categories=Utility;|g' welcome-tigeros.desktop
  
  #----- Fim do trecho relacionado ao arquivo welcome-tigeros ----#
- 
+
+  sed -i 's|^Categories=.*|Categories=System;|g' xfce4-terminal-emulator.desktop
