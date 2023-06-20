@@ -22,3 +22,6 @@ sed -i "/^Name\[/d;s|^Name=.*|Name=Calculadora|g" mate-calc.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Pesquisador de Arquivos|g" org.xfce.Catfish.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Captura de Tela|g" xfce4-screenshooter.desktop
 sed -i "/^Name\[/d;s|^Name=.*|Name=Analisador de uso de Disco|g" org.gnome.baobab.desktop
+sed -i "/^Name\[/d;s|^Name=.*|Name=Compactador de Arquivos|g" xarchiver.desktop
+sed -i "s|^X-Ubun.*||g;s|^Name=.*|Name=Gerenciador de Pacotes|g" synaptic.desktop
+sed -i "s|^X-Ubun.*||g;s|^Comment=.*|Comment=Instala, remove e atualiza pacotes de software|g" synaptic.desktop
