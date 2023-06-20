@@ -4,6 +4,8 @@
 
 sed -i 's|^Categories=.*|Categories=System;|g' synaptic.desktop
 
+sed -i 's|^Categories=.*|Categories=System;|g' boot-repair.desktop
+
 #----- Fim do trecho relacionado ao arquivo synaptic.desktop ----#
  
 #----- Esse trecho troca a categoria do arquivo atril.desktop para Acessórios ----#
@@ -29,12 +31,6 @@ sed -i 's|^Categories=.*|Categories=System;|g' synaptic.desktop
  sed -i 's|^Categories=.*|Categories=Utility;|g' org.xfce.ristretto.desktop
  
 #----- Fim do trecho relacionado ao arquivo org.xfce.ristretto.desktop ----#
-
-#----- Esse trecho troca a categoria do arquivo ubiquity.desktop para Sistema ----#
-
- sed -i 's|^Categories=.*|Categories=System;|g' ubiquity.desktop
- 
- #----- Fim do trecho relacionado ao arquivo ubiquity.desktop ----#
  
 #----- Esse trecho troca a categoria do arquivo welcome-tigeros para Acessórios ----#
 
