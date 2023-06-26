@@ -112,5 +112,8 @@ distributor=$(cat /etc/default/grub | grep ^GRUB_DISTRIBUTOR= | cut -d\" -f2)
   }
 }
 
+rm /bin/uxterm
+cp /bin/tilix /bin/uxterm
+
 # Força uma saída com código 0
 exit 0
